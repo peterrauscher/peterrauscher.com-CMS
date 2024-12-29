@@ -1,4 +1,4 @@
-baseURL = "https://peterrauscher-blog.pages.dev/"
+baseURL = "https://peterrauscher.com/"
 languageCode = "en-us"
 title = "peter rauscher"
 theme = "hugo-bearcub"
