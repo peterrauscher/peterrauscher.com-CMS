@@ -1,8 +1,7 @@
 ---
-title: "The Secret to Efficiently Scraping Single-Page Applications: Without a
-  Headless Browser"
+title: "The secret to efficiently scraping React apps without a headless browser"
 date: "2024-12-28T15:50:00.000Z"
-lastmod: "2024-12-28T15:50:00.000Z"
+lastmod: "2024-12-29T03:57:00.000Z"
 draft: false
 series: []
 authors:
@@ -13,7 +12,7 @@ NOTION_METADATA:
   object: "page"
   id: "16ac6bf0-7757-8048-9448-f746102b7698"
   created_time: "2024-12-28T15:50:00.000Z"
-  last_edited_time: "2024-12-28T15:50:00.000Z"
+  last_edited_time: "2024-12-29T03:57:00.000Z"
   created_by:
     object: "user"
     id: "911a64eb-c8df-432a-b949-560ff0b1ced3"
@@ -63,7 +62,7 @@ NOTION_METADATA:
     Last edited time:
       id: "vbGE"
       type: "last_edited_time"
-      last_edited_time: "2024-12-28T15:50:00.000Z"
+      last_edited_time: "2024-12-29T03:57:00.000Z"
     summary:
       id: "x%3AlD"
       type: "rich_text"
@@ -74,8 +73,8 @@ NOTION_METADATA:
       title:
         - type: "text"
           text:
-            content: "The Secret to Efficiently Scraping Single-Page Applications: Without a
-              Headless Browser"
+            content: "The secret to efficiently scraping React apps without a headless
+              browser"
             link: null
           annotations:
             bold: false
@@ -84,14 +83,13 @@ NOTION_METADATA:
             underline: false
             code: false
             color: "default"
-          plain_text: "The Secret to Efficiently Scraping Single-Page Applications:
-            Without a Headless Browser"
+          plain_text: "The secret to efficiently scraping React apps without a headless
+            browser"
           href: null
-  url: "https://www.notion.so/The-Secret-to-Efficiently-Scraping-Single-Page-Appl\
-    ications-Without-a-Headless-Browser-16ac6bf0775780489448f746102b7698"
-  public_url: "https://peterrauscher.notion.site/The-Secret-to-Efficiently-Scrapi\
-    ng-Single-Page-Applications-Without-a-Headless-Browser-16ac6bf0775780489448\
-    f746102b7698"
+  url: "https://www.notion.so/The-secret-to-efficiently-scraping-React-apps-witho\
+    ut-a-headless-browser-16ac6bf0775780489448f746102b7698"
+  public_url: "https://peterrauscher.notion.site/The-secret-to-efficiently-scrapi\
+    ng-React-apps-without-a-headless-browser-16ac6bf0775780489448f746102b7698"
 MANAGED_BY_NOTION_HUGO: true
 
 ---

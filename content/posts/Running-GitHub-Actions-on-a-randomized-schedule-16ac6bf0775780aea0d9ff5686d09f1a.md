@@ -1,18 +1,19 @@
 ---
-title: "Running GitHub Actions on a Randomized Schedule"
+title: "Running GitHub Actions on a randomized schedule"
 date: "2024-12-28T15:48:00.000Z"
-lastmod: "2024-12-28T15:50:00.000Z"
+lastmod: "2024-12-29T03:58:00.000Z"
 draft: false
 series: []
 authors:
   - "Peter"
-tags: []
+tags:
+  - "devops"
 categories: []
 NOTION_METADATA:
   object: "page"
   id: "16ac6bf0-7757-80ae-a0d9-ff5686d09f1a"
   created_time: "2024-12-28T15:48:00.000Z"
-  last_edited_time: "2024-12-28T15:50:00.000Z"
+  last_edited_time: "2024-12-29T03:58:00.000Z"
   created_by:
     object: "user"
     id: "911a64eb-c8df-432a-b949-560ff0b1ced3"
@@ -54,7 +55,10 @@ NOTION_METADATA:
     tags:
       id: "jw%7CC"
       type: "multi_select"
-      multi_select: []
+      multi_select:
+        - id: "e4b6c401-5442-4a2e-9a37-63df241d9bbf"
+          name: "devops"
+          color: "yellow"
     categories:
       id: "nbY%3F"
       type: "multi_select"
@@ -62,7 +66,7 @@ NOTION_METADATA:
     Last edited time:
       id: "vbGE"
       type: "last_edited_time"
-      last_edited_time: "2024-12-28T15:50:00.000Z"
+      last_edited_time: "2024-12-29T03:58:00.000Z"
     summary:
       id: "x%3AlD"
       type: "rich_text"
@@ -73,7 +77,7 @@ NOTION_METADATA:
       title:
         - type: "text"
           text:
-            content: "Running GitHub Actions on a Randomized Schedule"
+            content: "Running GitHub Actions on a randomized schedule"
             link: null
           annotations:
             bold: false
@@ -82,12 +86,12 @@ NOTION_METADATA:
             underline: false
             code: false
             color: "default"
-          plain_text: "Running GitHub Actions on a Randomized Schedule"
+          plain_text: "Running GitHub Actions on a randomized schedule"
           href: null
-  url: "https://www.notion.so/Running-GitHub-Actions-on-a-Randomized-Schedule-16a\
+  url: "https://www.notion.so/Running-GitHub-Actions-on-a-randomized-schedule-16a\
     c6bf0775780aea0d9ff5686d09f1a"
-  public_url: "https://peterrauscher.notion.site/Running-GitHub-Actions-on-a-Rand\
-    omized-Schedule-16ac6bf0775780aea0d9ff5686d09f1a"
+  public_url: "https://peterrauscher.notion.site/Running-GitHub-Actions-on-a-rand\
+    omized-schedule-16ac6bf0775780aea0d9ff5686d09f1a"
 MANAGED_BY_NOTION_HUGO: true
 
 ---
