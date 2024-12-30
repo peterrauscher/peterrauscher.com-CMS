@@ -1,7 +1,7 @@
 ---
 title: "The secret to efficiently scraping React apps without a headless browser"
 date: "2024-12-28T15:50:00.000Z"
-lastmod: "2024-12-29T03:57:00.000Z"
+lastmod: "2024-12-29T15:28:00.000Z"
 draft: false
 series: []
 authors:
@@ -12,7 +12,7 @@ NOTION_METADATA:
   object: "page"
   id: "16ac6bf0-7757-8048-9448-f746102b7698"
   created_time: "2024-12-28T15:50:00.000Z"
-  last_edited_time: "2024-12-29T03:57:00.000Z"
+  last_edited_time: "2024-12-29T15:28:00.000Z"
   created_by:
     object: "user"
     id: "911a64eb-c8df-432a-b949-560ff0b1ced3"
@@ -62,7 +62,7 @@ NOTION_METADATA:
     Last edited time:
       id: "vbGE"
       type: "last_edited_time"
-      last_edited_time: "2024-12-29T03:57:00.000Z"
+      last_edited_time: "2024-12-29T15:28:00.000Z"
     summary:
       id: "x%3AlD"
       type: "rich_text"
@@ -104,16 +104,16 @@ I'll walk you through how I solved this challenge _**without**_ using a headle
 ## Why are SPAs harder to scrape?
 
 
-SPAs are a breed of modern web applications that load a single HTML page and dynamically update content with Javascript as users interact with them, unlike traditional websites which reload entire pages for each user action.
+Traditional websites load all of their content synchronously and reload the entire page for each user navigation. Unlike these static sites, SPAs are a breed of modern web applications that load a single HTML page and dynamically update content with Javascript as users interact with them. Even non-SPA modern websites render more and more of their content through AJAX requests nowadays, from APIs and content management systems like Contentful.
 
 
-The challenge with scraping SPAs stems from the fact that traditional web scraping tools, such as [BeautifulSoup](https://pypi.org/project/beautifulsoup4/) often struggle to capture data from dynamically generated content, as they do not execute the Javascript embedded in `<script>` tags.
+The challenge with scraping SPAs stems from the fact that traditional web scraping tools, such as [BeautifulSoup](https://pypi.org/project/beautifulsoup4/) often struggle to capture data from dynamically rendered content, as they do not execute the Javascript embedded in `<script>` tags.
 
 
-The usual approach is to use a headless browser like [Selenium](https://www.selenium.dev/), [Puppeteer](https://pptr.dev/), or [Playwright](https://playwright.dev/) and scrape after the page is initialized. These tools load the entire web page, including executing JavaScript, rendering styles, and making AJAX requests. This approach can be resource-intensive and sluggish, particularly when dealing with unoptimized React code.
+The usual approach is to use a headless browser like [Selenium](https://www.selenium.dev/), [Puppeteer](https://pptr.dev/), or [Playwright](https://playwright.dev/) and scrape after the page has rendered completely. These tools load the entire web page, including executing JavaScript, rendering styles, and making AJAX requests. This approach can be resource-intensive and sluggish, particularly when dealing with unoptimized React code.
 
 
-![](https://peterrauscher-blog.pages.dev/api?block_id=16ac6bf0-7757-80ee-85a0-dbc629f465e3)
+![](https://peterrauscher.com/api?block_id=16ac6bf0-7757-80ee-85a0-dbc629f465e3)
 
 
 # The Solution
