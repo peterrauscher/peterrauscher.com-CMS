@@ -1,5 +1,5 @@
 baseURL = "https://peterrauscher.com/"
 languageCode = "en-us"
 title = "Peter Rauscher"
-theme = "hugo-bearcub"
+theme = "minimal-theme"
 enableRobotsTXT = true
