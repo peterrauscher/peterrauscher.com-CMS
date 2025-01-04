@@ -36,20 +36,6 @@ title = true
 hardWraps = false
 unsafe = true
 xhtml = false
-[highlight]
-anchorLineNos = false
-codeFences = true
-guessSyntax = true
-hl_Lines = ''
-hl_inline = false
-lineAnchors = ''
-lineNoStart = 1
-lineNos = true
-lineNumbersInTable = true
-noClasses = false
-noHl = false
-style = 'monokai'
-tabWidth = 4
 [tableOfContents]
 endLevel = 3
 ordered = false

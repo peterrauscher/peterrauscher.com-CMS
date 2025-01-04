@@ -1,10 +1,9 @@
-version = "0.3.X"
-[page]
-[page.math]
-enable = true
-blockLeftDelimiter = "\\["
-blockRightDelimiter = "\\]"
-inlineLeftDelimiter = "\\("
-inlineRightDelimiter = "\\)"
-copyTex = true
-mhchem = true
+description = "Peter Raucher's Blog"
+[social]
+github = "peterrauscher"
+twitter = "peterauscher"
+linkedin = "peter-rauscher"
+email = "contact@peterrauscher.com"
+[author]
+name = "Peter Raucher"
+email = "contact@peterrauscher.com"
