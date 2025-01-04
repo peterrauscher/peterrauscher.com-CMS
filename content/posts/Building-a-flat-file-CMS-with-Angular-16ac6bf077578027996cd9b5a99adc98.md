@@ -1,8 +1,8 @@
 ---
 title: "Building a flat-file CMS with Angular"
 date: "2024-12-28T15:51:00.000Z"
-lastmod: "2024-12-28T16:00:00.000Z"
-draft: true
+lastmod: "2025-01-04T01:52:00.000Z"
+draft: false
 series: []
 authors:
   - "Peter"
@@ -12,7 +12,7 @@ NOTION_METADATA:
   object: "page"
   id: "16ac6bf0-7757-8027-996c-d9b5a99adc98"
   created_time: "2024-12-28T15:51:00.000Z"
-  last_edited_time: "2024-12-28T16:00:00.000Z"
+  last_edited_time: "2025-01-04T01:52:00.000Z"
   created_by:
     object: "user"
     id: "911a64eb-c8df-432a-b949-560ff0b1ced3"
@@ -34,7 +34,7 @@ NOTION_METADATA:
     draft:
       id: "JiWU"
       type: "checkbox"
-      checkbox: true
+      checkbox: false
     authors:
       id: "bK%3B%5B"
       type: "people"
@@ -62,7 +62,7 @@ NOTION_METADATA:
     Last edited time:
       id: "vbGE"
       type: "last_edited_time"
-      last_edited_time: "2024-12-28T16:00:00.000Z"
+      last_edited_time: "2025-01-04T01:52:00.000Z"
     summary:
       id: "x%3AlD"
       type: "rich_text"
@@ -153,19 +153,19 @@ Next, it runs the following code, which reads each of the markdown files from th
 ```javascript
 let files = [];
 files = fs
-  .readdirSync(MARKDOWN_DIRECTORY)
-  .map((f) => path.join(MARKDOWN_DIRECTORY, f))
-  .filter((f) => fs.lstatSync(f).isFile())
-  .map((file) => {
-    // Read the whole file to a string
-    let fileContent = fs.readFileSync(file).toString();
-    // Parse it with gray-matter
-    let post = matter(fileContent);
-    post.filename = file;
-    // Convert the content to HTML with showdown
-    post.content = converter.makeHtml(post.content);
-    return post;
-  });
+    .readdirSync(MARKDOWN_DIRECTORY)
+    .map((f) => path.join(MARKDOWN_DIRECTORY, f))
+    .filter((f) => fs.lstatSync(f).isFile())
+    .map((file) => {
+        // Read the whole file to a string
+        let fileContent = fs.readFileSync(file).toString();
+        // Parse it with gray-matter
+        let post = matter(fileContent);
+        post.filename = file;
+        // Convert the content to HTML with showdown
+        post.content = converter.makeHtml(post.content);
+        return post;
+    });
 ```
 
 
@@ -175,11 +175,18 @@ The line `let post = matter(fileContent)` parses the file content with front mat
 ```javascript
 {
     "data": {
-        "title":"Some blog post title",        "date":"2020-01-24T00:00:00.000Z",        "published":true,        "thumbnail":"some-pic.jpg",        "permalink":"some-post"    },    "content":"Some blog post introduction...\n## A sub-heading\nSome section content...",}
+        "title": "Some blog post title",
+        "date": "2020-01-24T00:00:00.000Z",
+        "published": true,
+        "thumbnail": "some-pic.jpg",
+        "permalink": "some-post"
+    },
+    "content": "Some blog post introduction...\n## A sub-heading\nSome section content..."
+}
 ```
 
 
-And the line `post.content = converter.makeHtml(post.content)` converts the `content` field to HTML, as you’d expect:
+And the function `converter.makeHtml(post.content)` converts the `content` field to HTML, as you’d expect:
 
 
 ```javascript
@@ -191,7 +198,7 @@ And the line `post.content = converter.makeHtml(post.content)` converts the `con
     "thumbnail": "some-pic.jpg",
     "permalink": "some-post"
   },
-  "content": "Some blog post introduction...\n## A sub-heading\nSome section content...",
+  "content": "<p>Some blog post introduction...</p>\n<h2>A sub-heading</h2>\n<p>Some section content...</p>"
 }
 ```
 
@@ -203,9 +210,11 @@ Since I wanted to have thumbnails for each post (the file it uses is defined by 
 const THUMBNAIL_DIRECTORY = "posts/thumbnails";
 const THUMBNAIL_OUTPUT_DIRECTORY = "src/assets/thumbnails";
 export default () =>
-  gulp.src(`${THUMBNAIL_DIRECTORY}/*`)
-    .pipe(imagemin())
-    .pipe(gulp.dest(THUMBNAIL_OUTPUT_DIRECTORY));
+    gulp.src(`${THUMBNAIL_DIRECTORY}/*`)
+        .pipe(imagemin())
+        .pipe(
+            gulp.dest(THUMBNAIL_OUTPUT_DIRECTORY)
+        );
 ```
 
 
@@ -226,20 +235,20 @@ Instead, I decided to leverage one of the coolest things about Angular: it build
 ```javascript
 // Write only the published: true posts to posts.json for Angular to serve
 fs.writeFileSync(
-  OUTPUT_FILE,
-  JSON.stringify(files.filter((p) => p.data.published))
+    OUTPUT_FILE,
+    JSON.stringify(files.filter((p) => p.data.published))
 );
 // For each file
 files.forEach((file) => {
-  if (file) {
-    // Change the extension to .html
-    let filename = path.join(
-      OUTPUT_DIRECTORY,
-      `${path.basename(file.filename, ".md")}.html`
-    );
-    // Write the file to the build directory
-    fs.writeFileSync(filename, file.content);
-  }
+    if (file) {
+        // Change the extension to .html
+        let filename = path.join(
+            OUTPUT_DIRECTORY,
+            `${path.basename(file.filename, ".md")}.html`
+        );
+        // Write the file to the build directory
+        fs.writeFileSync(filename, file.content);
+    }
 });
 ```
 
@@ -255,7 +264,13 @@ We’ll keep this part simple. In our `app-routing.module.ts` file, we have the 
 
 ```typescript
 const routes: Routes = [
-    ...    { path: 'blog', component: BlogComponent },    { path: 'blog/:postlink', component: PostComponent },    { path: 'not-found', component: PageNotFoundComponent },    { path: '**', redirectTo: '/not-found' },    ...]
+    ...,
+    { path: 'blog', component: BlogComponent },
+    { path: 'blog/:postlink', component: PostComponent },
+    { path: 'not-found', component: PageNotFoundComponent },
+    { path: '**', redirectTo: '/not-found' },
+    ...,
+]
 ```
 
 
@@ -266,7 +281,13 @@ So, our `post.component.html` component is the generic page where all posts will
 
 
 ```html
-<div class="main section container pt-0">  <div class="block is-fullwidth">    <h1 class="title is-1">{{ meta.title }}</h1>    <p class="has-text-grey">Published {{ meta.date }}</p>  </div>  <div class="content" [innerHTML]="content"></div></div>
+<div class="main section container pt-0">
+    <div class="block is-fullwidth">
+        <h1 class="title is-1">{{ meta.title }}</h1>
+        <p class="has-text-grey">Published {{ meta.date }}</p>
+    </div>
+    <div class="content" [innerHTML]="content"></div>
+</div>
 ```
 
 
@@ -277,12 +298,33 @@ And here’s the cool part: the TypeScript code for the component:
 
 
 ```typescript
-// A library that provides syntax highlighting for <code> blocksimport hljs from "highlight.js";// The posts.json file we generated in the build stepimport posts from "src/posts.json";interface Post {
-  title: string;  date: string;  content: string;  thumbnail: string;  permalink: string;}
-// Iterate through each post object, filtering null/undefined itemslet postData = posts.filter(Boolean).map((p) => {
-  const post: Post = {
-    title: p.data.title,    // Format the date to something readable    date: new Date(p.data.date).toLocaleDateString("en-US", {
-      month: "long",      day: "numeric",      year: "numeric",    }),    content: p.content,    // Create the actual link to the thumbnail as it's available on the server    thumbnail: `/assets/thumbnails/${p.data.thumbnail}`,    permalink: p.data.permalink,  };  return post;});
+// A library that provides syntax highlighting for <code> blocks
+import hljs from "highlight.js";
+// The posts.json file we generated in the build step
+import posts from "src/posts.json";
+
+interface Post {
+    title: string;
+    date: string; content: string; thumbnail: string; permalink: string;
+}
+
+// Iterate through each post object, filtering null/undefined items
+let postData = posts.filter(Boolean).map((p) => {
+    const post: Post = {
+        // Pass in the title from the frontmatter
+        title: p.data.title,
+        // Format the date to something readable
+        date: new Date(p.data.date).toLocaleDateString("en-US", {
+            month: "long", day: "numeric", year: "numeric",
+        }),
+        // Pass in our content
+        content: p.content,
+        // Create the actual link to the thumbnail as it's available on the server
+        thumbnail: `/assets/thumbnails/${p.data.thumbnail}`, permalink: p.data.permalink,
+    };
+    
+    return post;
+});
 ```
 
 
@@ -291,10 +333,18 @@ Now, we implement the `OnInit` interface so that when the component is initializ
 
 ```typescript
 ngOnInit(): void {
-    this.postlink = this.route.snapshot.params['postlink'];    let postMeta = postData.find((p) => p.permalink === this.postlink);    if (postMeta) {
-        this.meta = postMeta;        this.content = postMeta.content;    } else {
-        this.router.navigate(['/not-found']);    }
+    this.postlink = this.route.snapshot.params['postlink'];
+
+    const postMeta = postData.find((p) => p.permalink === this.postlink);
+
+    if (postMeta) {
+        this.meta = postMeta;
+        this.content = postMeta.content;
+    } else {
+        this.router.navigate(['/not-found']);
+    }
 }
+
 ```
 
 
@@ -304,7 +354,9 @@ We also implement the `AfterViewInit` interface, so that we can highlight our co
 ```typescript
 ngAfterViewInit(): void {
     this.document.querySelectorAll('code').forEach((el) => {
-        hljs.highlightElement(el as HTMLElement);    });}
+        hljs.highlightElement(el as HTMLElement);
+    });
+}
 ```
 
 
@@ -315,7 +367,35 @@ The final piece of this puzzle is the `Blog` component, which lists all of the p
 
 
 ```html
-<div class="main section container pt-0">  <!-- For each post, create an entry -->  <div *ngFor="let post of posts" class="box is-rounded p-0">    <!-- Link to the post -->    <a class="nostyle" [href]="'/blog/' + post.permalink">      <div class="columns">        <!-- Inline style directive to load the thumbnail as the background image for this div -->        <div class="column is-one-fifth is-thumbnail is-hidden-mobile" [style]="post.thumbnail"></div>        <div class="column is-four-fifths">          <div class="content px-3 py-1">            <!-- Display the post title -->            <h3 class="title is-3 mb-2 no-border">{{ post.title }}</h3>            <!-- Display the first 180 characters of the post as a preview -->            <p class="mb-2" [innerHTML]="post.content.substring(0, 180) + '...'"></p>            <!-- Display the published date -->            <span class="tag is-info is-light">{{ post.date }}</span>          </div>        </div>      </div>    </a>  </div></div>
+<div class="main section container pt-0">
+    <!-- For each post, create an entry -->
+    <div *ngFor="let post of posts" class="box is-rounded p-0">
+        
+        <!-- Link to the post -->
+        <a class="nostyle" [href]="'/blog/' + post.permalink">
+            <div class="columns">
+                
+                <!-- Inline style directive to load the thumbnail as the background image for this div -->
+                <div class="column is-one-fifth is-thumbnail is-hidden-mobile" [style]="post.thumbnail"></div>
+                
+                <div class="column is-four-fifths">
+                    <div class="content px-3 py-1">
+                        
+                        <!-- Display the post title -->
+                        <h3 class="title is-3 mb-2 no-border">{{ post.title }}</h3>
+                        
+                        <!-- Display the first 180 characters of the post as a preview -->
+                        <p class="mb-2" [innerHTML]="post.content.substring(0, 180) + '...'"></p>
+                        
+                        <!-- Display the published date -->
+                        <span class="tag is-info is-light">{{ post.date }}</span>
+                    </div>
+                </div>
+                
+            </div>
+        </a>
+    </div>
+</div>
 ```
 
 
@@ -325,9 +405,22 @@ Our blog component pulls the `posts.json` data in much the same way as our post 
 ```typescript
 let postData = posts.map((p) => {
   const post: Post = {
-    title: p.data.title,    date: new Date(p.data.date).toLocaleDateString("en-US", {
-      month: "long",      day: "numeric",      year: "numeric",    }),    content: p.content,    thumbnail: `background-image: url("/assets/thumbnails/${p.data.thumbnail}"); background-position: center; background-size: cover;`,    permalink: p.data.permalink,  };  return post;});export class BlogComponent {
-  posts = postData;}
+    title: p.data.title,
+    date: new Date(p.data.date).toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    }),
+    content: p.content,
+    thumbnail: `background-image: url("/assets/thumbnails/${p.data.thumbnail}"); background-position: center; background-size: cover;`,
+    permalink: p.data.permalink,
+  };
+  return post;
+});
+
+export class BlogComponent {
+	posts = postData;
+}
 ```
 
 
@@ -338,7 +431,41 @@ The final step is obviously to deploy the site, which I do with AWS. First, when
 
 
 ```yaml
-version: 0.2env:  variables:    BUCKET_NAME: peterrauscher.com    DISTRIBUTION_ID: E34HJHH2D2T6HSphases:  pre_build:    commands:      - echo Installing source NPM dependencies...      - npm install      - npm install -g @angular/cli      - npm install -g gulp-cli  build:    commands:      - echo Build started on `date`      - echo Compiling the dist folder...      - npm run build  post_build:    commands:      - echo Build completed on `date`      - echo Deleting existing site files...      - aws s3 sync dist s3://${BUCKET_NAME}/ --delete      - echo Invalidating CloudFront cache...      - aws cloudfront create-invalidation --distribution-id ${DISTRIBUTION_ID} --paths "/*"artifacts:  files:    - "**/*"  discard-paths: no  base-directory: "dist/peterrauscher.com"
+version: 0.2
+
+env:
+  variables:
+    BUCKET_NAME: peterrauscher.com
+    DISTRIBUTION_ID: EDFDVBD6EXAMPLE
+
+phases:
+  pre_build:
+    commands:
+      - echo Installing source NPM dependencies...
+      - npm install
+      - npm install -g @angular/cli
+      - npm install -g gulp-cli
+
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Compiling the dist folder...
+      - npm run build
+
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Deleting existing site files...
+      - aws s3 sync dist s3://${BUCKET_NAME}/ --delete
+      - echo Invalidating CloudFront cache...
+      - aws cloudfront create-invalidation --distribution-id ${DISTRIBUTION_ID} --paths "/*"
+
+artifacts:
+  files:
+    - "**/*"
+  discard-paths: no
+  base-directory: "dist/peterrauscher.com"
+
 ```
 
 
@@ -346,4 +473,7 @@ version: 0.2env:  variables:    BUCKET_NAME: peterrauscher.com    DISTRIBUTION_I
 
 
 And that’s about it! We’ve covered all of the logic needed to set up a flat-file blog on your own Angular site. Feel free to tweak things like the routing/paths, stylistic choices, or removing features you don’t intend to use, but I’m quite happy with how this worked out and happy that I was able to implement it statically so I could still run it purely on S3. I hope you enjoyed the read and learned something you can apply on your own!
+
+
+> 💡 Note: This is no longer the setup I use for my personal site. It was a project I took on to get familiar with Angular prior to an interview. I’m rocking [Hugo](https://gohugo.io/) now.
 
