@@ -37,6 +37,7 @@ export async function renderPage(page: PageObjectResponse, notion: Client) {
   }
 
   // map page properties to front matter
+  let usesPublishedDate = false;
   for (const property in page.properties) {
     const id = page.properties[property].id;
     const response = await notion.pages.properties.retrieve({
@@ -44,6 +45,7 @@ export async function renderPage(page: PageObjectResponse, notion: Client) {
       property_id: id,
     });
     if (response.object === "property_item") {
+      if (property === "published-date") usesPublishedDate = true;
       switch (response.type) {
         case "checkbox":
           frontMatter[property] = response.checkbox;
@@ -63,8 +65,16 @@ export async function renderPage(page: PageObjectResponse, notion: Client) {
           if (response.url) frontMatter[property] = response.url;
           break;
         case "date":
-          if (response.date) frontMatter[property] = response.date.start;
-          console.log(`${property}: ${response.date?.start}`);
+          if (response.date) {
+            if (property === "published-date") {
+              frontMatter["date"] = response.date.start;
+              usesPublishedDate = true;
+            } else if (property === "date" && !usesPublishedDate) {
+              frontMatter["date"] = response.date.start;
+            } else {
+              frontMatter[property] = response.date.start;
+            }
+          }
           break;
         case "number":
           if (response.number) frontMatter[property] = response.number;
