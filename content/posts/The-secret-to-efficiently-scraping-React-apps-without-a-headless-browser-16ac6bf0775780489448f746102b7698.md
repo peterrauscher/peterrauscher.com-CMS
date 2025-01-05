@@ -1,7 +1,7 @@
 ---
 title: "The secret to efficiently scraping React apps without a headless browser"
-date: "2024-12-28T15:50:00.000Z"
-lastmod: "2024-12-29T15:28:00.000Z"
+date: "2024-01-22T00:00:00.000-05:00"
+lastmod: "2025-01-05T16:02:00.000Z"
 draft: false
 series: []
 authors:
@@ -12,7 +12,7 @@ NOTION_METADATA:
   object: "page"
   id: "16ac6bf0-7757-8048-9448-f746102b7698"
   created_time: "2024-12-28T15:50:00.000Z"
-  last_edited_time: "2024-12-29T15:28:00.000Z"
+  last_edited_time: "2025-01-05T16:02:00.000Z"
   created_by:
     object: "user"
     id: "911a64eb-c8df-432a-b949-560ff0b1ced3"
@@ -35,6 +35,13 @@ NOTION_METADATA:
       id: "JiWU"
       type: "checkbox"
       checkbox: false
+    published-date:
+      id: "%5C%5CDZ"
+      type: "date"
+      date:
+        start: "2024-01-22T00:00:00.000-05:00"
+        end: null
+        time_zone: null
     authors:
       id: "bK%3B%5B"
       type: "people"
@@ -59,10 +66,6 @@ NOTION_METADATA:
       id: "nbY%3F"
       type: "multi_select"
       multi_select: []
-    Last edited time:
-      id: "vbGE"
-      type: "last_edited_time"
-      last_edited_time: "2024-12-29T15:28:00.000Z"
     summary:
       id: "x%3AlD"
       type: "rich_text"
