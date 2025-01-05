@@ -1,9 +1,10 @@
 ---
 title: "Running GitHub Actions on a randomized schedule"
 date: "2024-12-28T15:48:00.000Z"
-lastmod: "2025-01-04T01:55:00.000Z"
+lastmod: "2025-01-05T00:43:00.000Z"
 draft: false
 series: []
+published-date: "2023-03-29T20:40:00.000-04:00"
 authors:
   - "Peter"
 tags: []
@@ -12,7 +13,7 @@ NOTION_METADATA:
   object: "page"
   id: "16ac6bf0-7757-80ae-a0d9-ff5686d09f1a"
   created_time: "2024-12-28T15:48:00.000Z"
-  last_edited_time: "2025-01-04T01:55:00.000Z"
+  last_edited_time: "2025-01-05T00:43:00.000Z"
   created_by:
     object: "user"
     id: "911a64eb-c8df-432a-b949-560ff0b1ced3"
@@ -35,6 +36,13 @@ NOTION_METADATA:
       id: "JiWU"
       type: "checkbox"
       checkbox: false
+    published-date:
+      id: "%5C%5CDZ"
+      type: "date"
+      date:
+        start: "2023-03-29T20:40:00.000-04:00"
+        end: null
+        time_zone: null
     authors:
       id: "bK%3B%5B"
       type: "people"
@@ -59,10 +67,6 @@ NOTION_METADATA:
       id: "nbY%3F"
       type: "multi_select"
       multi_select: []
-    Last edited time:
-      id: "vbGE"
-      type: "last_edited_time"
-      last_edited_time: "2025-01-04T01:55:00.000Z"
     summary:
       id: "x%3AlD"
       type: "rich_text"
