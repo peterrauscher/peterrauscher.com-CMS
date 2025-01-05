@@ -64,6 +64,7 @@ export async function renderPage(page: PageObjectResponse, notion: Client) {
           break;
         case "date":
           if (response.date) frontMatter[property] = response.date.start;
+          console.log(`${property}: ${response.date?.start}`);
           break;
         case "number":
           if (response.number) frontMatter[property] = response.number;
