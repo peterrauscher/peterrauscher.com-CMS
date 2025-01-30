@@ -1,18 +1,20 @@
 ---
 title: "Running GitHub Actions on a randomized schedule"
 date: "2023-03-30T20:40:00.000-04:00"
-lastmod: "2025-01-29T15:51:00.000Z"
+lastmod: "2025-01-30T05:03:00.000Z"
 draft: false
 series: []
 authors:
   - "Peter"
-tags: []
-categories: []
+tags:
+  - "engineering"
+categories:
+  - "eng"
 NOTION_METADATA:
   object: "page"
   id: "16ac6bf0-7757-80ae-a0d9-ff5686d09f1a"
   created_time: "2024-12-28T15:48:00.000Z"
-  last_edited_time: "2025-01-29T15:51:00.000Z"
+  last_edited_time: "2025-01-30T05:03:00.000Z"
   created_by:
     object: "user"
     id: "911a64eb-c8df-432a-b949-560ff0b1ced3"
@@ -61,11 +63,17 @@ NOTION_METADATA:
     tags:
       id: "jw%7CC"
       type: "multi_select"
-      multi_select: []
+      multi_select:
+        - id: "d3648cb9-022a-42c7-a0bc-6601edae5057"
+          name: "engineering"
+          color: "green"
     categories:
       id: "nbY%3F"
       type: "multi_select"
-      multi_select: []
+      multi_select:
+        - id: "6cfa2b44-9f5c-40f5-8f84-24c6a8151155"
+          name: "eng"
+          color: "purple"
     summary:
       id: "x%3AlD"
       type: "rich_text"

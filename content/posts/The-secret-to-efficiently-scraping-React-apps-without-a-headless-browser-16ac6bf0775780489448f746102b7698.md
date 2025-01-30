@@ -1,18 +1,20 @@
 ---
 title: "The secret to efficiently scraping React apps without a headless browser"
 date: "2024-01-22T00:00:00.000-05:00"
-lastmod: "2025-01-05T16:02:00.000Z"
+lastmod: "2025-01-30T05:03:00.000Z"
 draft: false
 series: []
 authors:
   - "Peter"
-tags: []
-categories: []
+tags:
+  - "engineering"
+categories:
+  - "eng"
 NOTION_METADATA:
   object: "page"
   id: "16ac6bf0-7757-8048-9448-f746102b7698"
   created_time: "2024-12-28T15:50:00.000Z"
-  last_edited_time: "2025-01-05T16:02:00.000Z"
+  last_edited_time: "2025-01-30T05:03:00.000Z"
   created_by:
     object: "user"
     id: "911a64eb-c8df-432a-b949-560ff0b1ced3"
@@ -53,7 +55,7 @@ NOTION_METADATA:
             e2-5f13-4f26-95a6-9feccbcca818/profile-pic_(1).png"
           type: "person"
           person:
-            email: "39c43lmy@lumail.xyz"
+            email: "notion@peterrauscher.com"
     custom-front-matter:
       id: "c~kA"
       type: "rich_text"
@@ -61,11 +63,17 @@ NOTION_METADATA:
     tags:
       id: "jw%7CC"
       type: "multi_select"
-      multi_select: []
+      multi_select:
+        - id: "d3648cb9-022a-42c7-a0bc-6601edae5057"
+          name: "engineering"
+          color: "green"
     categories:
       id: "nbY%3F"
       type: "multi_select"
-      multi_select: []
+      multi_select:
+        - id: "6cfa2b44-9f5c-40f5-8f84-24c6a8151155"
+          name: "eng"
+          color: "purple"
     summary:
       id: "x%3AlD"
       type: "rich_text"
@@ -119,13 +127,10 @@ The usual approach is to use a headless browser like [Selenium](https://www.sel
 ![](https://peterrauscher.com/api?block_id=16ac6bf0-7757-80ee-85a0-dbc629f465e3)
 
 
-# The Solution
+## The Solution
 
 
-## Sending an HTTP Request
-
-
-We’ll use a simple GET request to the page’s URL. This initial request fetches the HTML response, which may lack the page’s data as stored in HTML, but is embedded in the bundled JS.
+We can use a simple GET request to the page’s URL. This initial request fetches the HTML response, which often has the data we’re looking for embedded in the bundled JS.
 
 
 ```python
@@ -138,7 +143,7 @@ html_content = response.text
 ```
 
 
-## Extracting React/Next.js Data from HTML
+### Extracting React/Next.js Data from HTML
 
 
 Here's where the magic happens. Our goal is to extract React data from the plaintext response. SPAs frequently load data within script tags, and we'll employ regular expressions (regex) to locate and extract these script tags.
@@ -165,7 +170,7 @@ react_data = json.loads(extractor(html_content))
 ```
 
 
-## Handling Authentication and Cookies
+### Handling Authentication and Cookies
 
 
 In certain scenarios, SPAs may necessitate authentication or rely on cookies to access data. You can adeptly manage authentication and cookies within your scraping script using the session management features provided by the `requests` library. This enables you to maintain a persistent session and send authenticated requests.
@@ -190,10 +195,13 @@ response = session.get('https://example.com/protected_data')
 ## Conclusion
 
 
-A little string manipulation goes a long way. Harnessing the power of regex, we've uncovered an efficient and lightweight approach to extracting React data from SPAs. Whether you're a data enthusiast or a developer working on a specific project, this technique can save you valuable time and resources.
+A little string manipulation goes a long way. Harnessing the power of regex you can create an efficient and lightweight approach to extracting data from SPA sites.
 
 
-The next time you encounter a challenging SPA that demands scraping, remember the simplicity and effectiveness of initial state scraping. Happy scraping!
+### Chrome Extension
+
+
+When I was building an ingestion engine for an app I was working on, I wanted a quick way to view the hidden JSON blob I for the page I was viewing to see if it held the data I wanted. I built a chrome extension that displays this data and lets you easily copy or export it to help when writing scraping applications. [It’s available on the Chrome Web Store](https://chromewebstore.google.com/detail/nextscraper/kjlhnflincmlpkgahnidgebbngieobod), check it out!
 
 
 ### _Disclaimer_
