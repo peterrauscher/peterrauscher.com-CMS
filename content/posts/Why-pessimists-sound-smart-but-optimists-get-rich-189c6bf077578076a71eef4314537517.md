@@ -1,20 +1,19 @@
 ---
 title: "Why pessimists sound smart but optimists get rich"
 date: "2025-01-07"
-lastmod: "2025-01-30T05:04:00.000Z"
+lastmod: "2025-01-30T05:12:00.000Z"
 draft: false
 series: []
 authors:
   - "Peter"
 tags:
-  - "philosophy"
-categories:
   - "life"
+categories: []
 NOTION_METADATA:
   object: "page"
   id: "189c6bf0-7757-8076-a71e-ef4314537517"
   created_time: "2025-01-28T13:44:00.000Z"
-  last_edited_time: "2025-01-30T05:04:00.000Z"
+  last_edited_time: "2025-01-30T05:12:00.000Z"
   created_by:
     object: "user"
     id: "911a64eb-c8df-432a-b949-560ff0b1ced3"
@@ -64,16 +63,13 @@ NOTION_METADATA:
       id: "jw%7CC"
       type: "multi_select"
       multi_select:
-        - id: "8e1fea6f-0783-4b20-9d88-22dd297e84a9"
-          name: "philosophy"
-          color: "purple"
+        - id: "fc6000fd-cdbb-43b9-a298-de412cfc1bb2"
+          name: "life"
+          color: "orange"
     categories:
       id: "nbY%3F"
       type: "multi_select"
-      multi_select:
-        - id: "c8db45eb-1185-40e8-90c8-7c63beeb26c0"
-          name: "life"
-          color: "pink"
+      multi_select: []
     summary:
       id: "x%3AlD"
       type: "rich_text"
